@@ -15,7 +15,7 @@ Siga estes passos para configurar o ambiente de desenvolvimento em sua máquina 
 Clone o repositório do projeto usando o seguinte comando no terminal:
 
 ```bash
-git clone [[URL_DO_REPOSITÓRIO](https://github.com/ericcoleta/desafio_dados_blue3)]
+git clone https://github.com/ericcoleta/desafio_dados_blue3
 ```
 
 ### Passo 2: Configurar o Ambiente com Docker
