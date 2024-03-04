@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - "15433:5432"
+    container_name: desafio_dados_blue3_postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: desafio_dados_blue3
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    networks:
+      - postgres-network
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/candidato/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - GRANT_SUDO=yes
+    networks:
+      - postgres-network
+    depends_on:
+      - database
+
+networks:
+  postgres-network:
+    driver: bridge
